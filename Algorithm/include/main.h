@@ -38,7 +38,7 @@ public:
         fScore[start] = start->distance(*goal);
         while (!openSet.empty())
         {
-            Location* current = std::min_element(openSet.begin(), openSet.end(), [fScore] (Location* a, Location* b) mutable -> bool
+            Location* current = *(std::min_element(openSet.begin(), openSet.end(), [fScore] (Location* a, Location* b) mutable -> bool
                                          { if (fScore.count(a))
                                             {
                                                 if (fScore.count(b))
@@ -51,7 +51,7 @@ public:
                                             }
                                             else { return false; }
                                          }
-                                        );
+                                        ));
             if (current == goal)
                 return reconstruct_path(cameFrom, current);
             for (Location* neighbor : current->get_connections())
