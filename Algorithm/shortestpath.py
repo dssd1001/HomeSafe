@@ -33,6 +33,11 @@ def binary(i):
             ret[counter] = not ret[counter]
     return ret
 
+def left_shift(s):
+    for i in range(len(s) - 1, 0, -1):
+        s[i] = s[i-1]
+    s[0] = False
+    return s
 ### --- END --- ###
 
 class NoPathError(Exception):
