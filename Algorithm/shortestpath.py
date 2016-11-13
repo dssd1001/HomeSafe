@@ -53,7 +53,7 @@ class Location:
                 loc.add_connection([self])
     
     def __repr__(self):
-        return str(self.lat) + ", " + str(self.long)
+        return '(' + str(self.lat) + ", " + str(self.long) + ')'
             
 class Event:
     """An event object that represents something happening at a certain location"""
