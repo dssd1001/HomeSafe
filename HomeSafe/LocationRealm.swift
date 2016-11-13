@@ -16,19 +16,19 @@ var realm = Realm()
 class Location : Object {
     var name: String
     var heuristicVal: [String:Float] = [
-        "Theft" : 7,
-        "Burglary" : 10,
-        "Assault" : 20,
-        "Shooting" : 50,
-        "Suspicious Behavior" : 1,
-        "Fire" : 50.0
+        "Theft" : 1.0,
+        "Burglary" : 2.0,
+        "Assault" : 3.0,
+        "Shooting" : 7.0,
+        "Suspicious Behavior" : 0.25,
+        "Fire" : 5.0
     ]
     var radius: [String:Float] = [
-        "Theft" : 0.2,
-        "Burglary" : 0.2,
-        "Assault" : 0.35,
-        "Shooting" : 0.70,
-        "Suspicious Behavior" : 0.025,
+        "Theft" : 0.05,
+        "Burglary" : 0.1,
+        "Assault" : 0.2,
+        "Shooting" : 0.4,
+        "Suspicious Behavior" : 0.003,
         "Fire" : 0.05
     ]
 }
