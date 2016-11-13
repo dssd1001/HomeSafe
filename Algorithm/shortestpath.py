@@ -41,6 +41,11 @@ def left_shift(s):
     for i in range(len(s) - 1, 0, -1):
         s[i] = s[i-1]
     s[0] = False
+
+def int_convert(l):
+    """Converts a bit list into an integer"""
+    return sum([int(l[i]) * (2 ** i) for i in range(len(l))])
+
 ### --- END --- ###
 
 class NoPathError(Exception):
@@ -171,14 +176,13 @@ def encoded_polyline_algorithm_format(locations):
     """
     # First, take the differences between consecutive locations
     for i in range(len(locations) - 1, 0, -1):
-        locations[i] = (locations[i].lat - locations[i-1].lat, locations[i].long - locations[i-1].long)
+        locations[i] = (locations[i][0] - locations[i-1][0], locations[i][1] - locations[i-1][1])
     # Multiply everything by 10^5
+    ret = []
     for i in range(len(locations)):
         locations[i] = (round(1e5 * locations[i][0]), round(locations[i][1] * 1e5))
-        if locations[i][0] < 0:
-            is_neg0 = True
-        if locations[i][1] < 0:
-            is_neg1 = True
+        is_neg0 = locations[i][0] < 0
+        is_neg1 = locations[i][1] < 0
         # Each of these will be bit arrays 
         lat, long = binary(locations[i][0]), binary(locations[i][1])
         left_shift(lat)
@@ -188,6 +192,19 @@ def encoded_polyline_algorithm_format(locations):
         if is_neg1:
             invert(long)
         lat_chunk = [lat[5 * i : 5 * i + 5] for i in range(6)]
+        long_chunk = [lat[5 * i : 5 * i + 5] for i in range(6)]
+        for elem in lat_chunk:
+            elem.append(True)
+        for elem in long_chunk:
+            elem.append(True)
+        lat_chunk[-1][-1] = False
+        long_chunk[-1][-1] = False
+        for i in range(len(lat_chunk)):
+            lat_chunk[i] = chr(int_convert(lat_chunk[i]) + 63)
+            long_chunk[i] = chr(int_convert(long_chunk[i]) + 63)
+        ret.append(sum(lat_chunk, ""))
+        ret.append(sum(long_chunk, ""))
+    return ret
         
 def reconstruct_path(cameFrom, current):
     total_path = [current]
