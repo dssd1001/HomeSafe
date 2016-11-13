@@ -42,7 +42,7 @@ class MapController: UIViewController, CLLocationManagerDelegate {
             lM.requestLocation()
         }
         
-//        locationTuples = [(sourceField, nil), (destinationField1, nil)]
+        locationTuples = [(sourceField, nil), (destinationField, nil)]
         
         let destinationUI:UIView = UIView(frame: CGRect(x: 5, y: 70, width: view.frame.width - 10, height: 50))
         destinationUI.backgroundColor = UIColor.white
@@ -66,20 +66,15 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         let locValue = manager.location!.coordinate
         userLocation = locValue
         
-        print("locations = \(userLocation.latitude) \(userLocation.longitude)")
+        centerMapOnLocation(location: CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude))
         
-        let initialLocation = CLLocation(latitude: 37.8684587, longitude: -122.2620742)
-        
-//        centerMapOnLocation(location: CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude))
-        centerMapOnLocation(location: initialLocation)
-        
-//        CLGeocoder().reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks:[CLPlacemark]?, error:NSError?) -> Void in if let placemarks = placemarks {
-//                let placemark = placemarks[0]
-//                self.locationTuples[0].mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:AnyObject]?))
-//                self.sourceField.text = self.formatAddressFromPlacemark(placemark)
-//                self.enterButtonArray.filter{$0.tag == 1}.first!.selected = true
-//            }
-//        } as! CLGeocodeCompletionHandler)
+        CLGeocoder().reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks:[CLPlacemark]?, error:NSError?) -> Void in if let placemarks = placemarks {
+                let placemark = placemarks[0]
+                self.locationTuples[0].mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:AnyObject]?))
+                self.sourceField.text = self.formatAddressFromPlacemark(placemark)
+                self.enterButtonArray.filter{$0.tag == 1}.first!.selected = true
+            }
+        } as! CLGeocodeCompletionHandler)
         
         let annotation = ColorPointAnnotation(pinColor: UIColor.blue)
         annotation.coordinate = CLLocationCoordinate2D(latitude: 37.8684587, longitude: -122.2620742)
