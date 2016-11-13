@@ -80,7 +80,7 @@ class Location
 };
 std::ostream& operator<< (std::ostream& out, const Location& l)
 {
-    out << '(' << l.get_latitude() << ', ' << l.get_longitude() << ')';
+    out << "(" << l.get_latitude() << ", " << l.get_longitude() << ")";
     return out;
 }
 
