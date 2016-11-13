@@ -31,6 +31,14 @@
 		57226DB91DD8ACD900D9FE6E /* Map.png in Resources */ = {isa = PBXBuildFile; fileRef = 57226DB61DD8ACD900D9FE6E /* Map.png */; };
 		57226DC01DD8AFED00D9FE6E /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 57226DBF1DD8AFED00D9FE6E /* Settings.png */; };
 		57226DC91DD8B43C00D9FE6E /* inputdata.txt in Resources */ = {isa = PBXBuildFile; fileRef = 57226DC51DD8B43C00D9FE6E /* inputdata.txt */; };
+		57943D101DD8F2E300B547CF /* feeeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 57943D091DD8F2E300B547CF /* feeeed.png */; };
+		57943D111DD8F2E300B547CF /* home.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57943D0A1DD8F2E300B547CF /* home.jpg */; };
+		57943D121DD8F2E300B547CF /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 57943D0B1DD8F2E300B547CF /* home.png */; };
+		57943D131DD8F2E300B547CF /* HomeSafe logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57943D0C1DD8F2E300B547CF /* HomeSafe logo.jpg */; };
+		57943D141DD8F2E300B547CF /* homesafe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57943D0D1DD8F2E300B547CF /* homesafe.jpg */; };
+		57943D151DD8F2E300B547CF /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57943D0E1DD8F2E300B547CF /* logo.jpg */; };
+		57943D161DD8F2E300B547CF /* settings_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57943D0F1DD8F2E300B547CF /* settings_logo.jpg */; };
+		57943D181DD8F2F800B547CF /* LocationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943D171DD8F2F800B547CF /* LocationRealm.swift */; };
 		57DC35C81DD8171900F974DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DC35C71DD8171900F974DA /* UIKit.framework */; };
 		57DC35CA1DD8172500F974DA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DC35C91DD8172500F974DA /* CoreLocation.framework */; };
 		5854F7461DD8E35E0049F78E /* ObjcBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5854F7451DD8E35E0049F78E /* ObjcBridge.mm */; };
@@ -87,6 +95,14 @@
 		57226DC61DD8B43C00D9FE6E /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		57226DC71DD8B43C00D9FE6E /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		57226DC81DD8B43C00D9FE6E /* Risks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Risks.h; sourceTree = "<group>"; };
+		57943D091DD8F2E300B547CF /* feeeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feeeed.png; sourceTree = "<group>"; };
+		57943D0A1DD8F2E300B547CF /* home.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home.jpg; sourceTree = "<group>"; };
+		57943D0B1DD8F2E300B547CF /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		57943D0C1DD8F2E300B547CF /* HomeSafe logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "HomeSafe logo.jpg"; sourceTree = "<group>"; };
+		57943D0D1DD8F2E300B547CF /* homesafe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = homesafe.jpg; sourceTree = "<group>"; };
+		57943D0E1DD8F2E300B547CF /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
+		57943D0F1DD8F2E300B547CF /* settings_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = settings_logo.jpg; sourceTree = "<group>"; };
+		57943D171DD8F2F800B547CF /* LocationRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRealm.swift; sourceTree = "<group>"; };
 		57DC35C71DD8171900F974DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57DC35C91DD8172500F974DA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5854F7421DD8D8740049F78E /* HomeSafe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HomeSafe-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -146,6 +162,7 @@
 		4127B5E31DD7391900B9C643 /* HomeSafe */ = {
 			isa = PBXGroup;
 			children = (
+				57943D171DD8F2F800B547CF /* LocationRealm.swift */,
 				57226DC51DD8B43C00D9FE6E /* inputdata.txt */,
 				57226DC61DD8B43C00D9FE6E /* Location.h */,
 				57226DC71DD8B43C00D9FE6E /* main.h */,
@@ -194,6 +211,13 @@
 		4127B61F1DD7800300B9C643 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57943D091DD8F2E300B547CF /* feeeed.png */,
+				57943D0A1DD8F2E300B547CF /* home.jpg */,
+				57943D0B1DD8F2E300B547CF /* home.png */,
+				57943D0C1DD8F2E300B547CF /* HomeSafe logo.jpg */,
+				57943D0D1DD8F2E300B547CF /* homesafe.jpg */,
+				57943D0E1DD8F2E300B547CF /* logo.jpg */,
+				57943D0F1DD8F2E300B547CF /* settings_logo.jpg */,
 				57226DBF1DD8AFED00D9FE6E /* Settings.png */,
 				57226DB51DD8ACD900D9FE6E /* Feed.png */,
 				57226DB61DD8ACD900D9FE6E /* Map.png */,
@@ -328,11 +352,18 @@
 				57226DB91DD8ACD900D9FE6E /* Map.png in Resources */,
 				57226DA51DD87FFF00D9FE6E /* incidents.plist in Resources */,
 				57226DC01DD8AFED00D9FE6E /* Settings.png in Resources */,
+				57943D161DD8F2E300B547CF /* settings_logo.jpg in Resources */,
 				57226DC91DD8B43C00D9FE6E /* inputdata.txt in Resources */,
+				57943D111DD8F2E300B547CF /* home.jpg in Resources */,
 				4127B5F21DD7391900B9C643 /* LaunchScreen.storyboard in Resources */,
 				4127B6211DD7800300B9C643 /* muse.jpg in Resources */,
+				57943D101DD8F2E300B547CF /* feeeed.png in Resources */,
+				57943D151DD8F2E300B547CF /* logo.jpg in Resources */,
+				57943D141DD8F2E300B547CF /* homesafe.jpg in Resources */,
 				57226DA61DD87FFF00D9FE6E /* intersections.plist in Resources */,
+				57943D131DD8F2E300B547CF /* HomeSafe logo.jpg in Resources */,
 				4127B5EF1DD7391900B9C643 /* Assets.xcassets in Resources */,
+				57943D121DD8F2E300B547CF /* home.png in Resources */,
 				57226DB81DD8ACD900D9FE6E /* Feed.png in Resources */,
 				4127B5EA1DD7391900B9C643 /* Main.storyboard in Resources */,
 			);
@@ -359,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57943D181DD8F2F800B547CF /* LocationRealm.swift in Sources */,
 				5854F7461DD8E35E0049F78E /* ObjcBridge.mm in Sources */,
 				4127B62D1DD8405B00B9C643 /* StaticSettingsController.swift in Sources */,
 				4127B5E71DD7391900B9C643 /* MainController.swift in Sources */,
