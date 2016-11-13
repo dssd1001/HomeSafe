@@ -52,17 +52,16 @@ public:
                 if (closedSet.find(neighbor) != closedSet.end())
                     continue; // Ignore the neighbor that is already evaluated
                 // The distance from start to a neighbor
-                double tentative_gScore = gScore[current] + current.risk(neighbor, current_risks);
+                double tentative_gScore = gScore[current] + current->risk(neighbor, current_risks);
                 if (openSet.find(neighbor) == openSet.end())
-                {
                     openSet.insert(neighbor);
-                }
                 else if (tentative_gScore >= gScore[neighbor])
-                {
-                    continue;
-                }
-            }
+                    continue; // We have not found a better path D:
 
+                cameFrom[neighbor] = current;
+                gScore[neighbor] = tentative_gScore;
+                fScore[neighbor] = gScore[neighbor] + neighbor->risk(goal);
+            }
         }
     }
 
