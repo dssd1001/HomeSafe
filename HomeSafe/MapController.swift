@@ -41,11 +41,11 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
             lM.requestLocation()
         }
         
-        let destinationUI:UIView = UIView(frame: CGRect(x: 5, y: 70, width: view.frame.width - 10, height: 50))
+        let destinationUI:UIView = UIView(frame: CGRect(x: 5, y: 70, width: view.frame.width - 10, height: 40))
         destinationUI.backgroundColor = UIColor.white
         view.addSubview(destinationUI)
         
-        let destinationField:UITextField = UITextField(frame: CGRect(x: 5, y: 70, width: view.frame.width - 10, height: 50))
+        let destinationField:UITextField = UITextField(frame: CGRect(x: 5, y: 70, width: view.frame.width - 10, height: 40))
         destinationField.placeholder = "Enter your destination"
         destinationField.textAlignment = .center
         view.addSubview(destinationField)
