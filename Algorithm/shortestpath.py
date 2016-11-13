@@ -50,7 +50,7 @@ class Location:
         for loc in locs:
             if loc not in self.connections:
                 self.connections.append(loc)
-                loc.add_connection(self)
+                loc.add_connection([self])
     
     def __repr__(self):
         return str(self.lat) + ", " + str(self.long)
