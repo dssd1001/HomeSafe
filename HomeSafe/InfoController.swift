@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MapKit
 
 class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let tableView = UITableView(frame: UIScreen.main.bounds)
+    var locations: NSArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,9 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         view.addSubview(tableView)
         
+        let path = Bundle.main.path(forResource: "incidents", ofType: "plist")
+        locations = NSArray(contentsOfFile: path!)
+        
     }
     
     func addPressed(_ sender: UIButton) {
@@ -41,7 +46,7 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,6 +54,9 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = InfoCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
         cell.backgroundColor = UIColor.lightGray
         cell.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/3 - 1)
+        cell.title.text = (locations[indexPath.item] as AnyObject).value(forKey: "title") as? String
+        cell.coord.latitude = (locations[indexPath.item] as AnyObject).value(forKey: "lat") as! CLLocationDegrees
+        cell.coord.longitude = (locations[indexPath.item] as AnyObject).value(forKey: "long") as! CLLocationDegrees
         
         let thumbnail: UIView = {
             let thumbView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/3 - 1))
@@ -65,8 +73,9 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = MapController()
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InfoCell
+        let vc = CustomMapController()
+        vc.userLocation = cell.coord
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -86,10 +95,12 @@ class InfoCell: TableCell {
     var distance: UILabel!
     var content: UILabel!
     var timestamp: UILabel!
+    var coord: CLLocationCoordinate2D!
 
     override func setup() {
+        coord = CLLocationCoordinate2D()
+        
         title = UILabel()
-        title.text = "Hello"
         title.font = UIFont.boldSystemFont(ofSize: 20)
         
         address = UILabel()
