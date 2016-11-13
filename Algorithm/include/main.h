@@ -12,6 +12,13 @@ class City
 {
 public:
     City() = default;
+    virtual ~City()
+    {
+        for (int i = 0; i < intersections.size(); i++)
+        {
+            delete intersections[i];
+        }
+    }
 
     std::vector<Location*> Astar(Location* start, Location* goal)
     {
