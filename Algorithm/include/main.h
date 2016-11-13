@@ -72,6 +72,43 @@ public:
         }
     }
 
+    void push_street(std::vector< std::pair<double, double> > inters)
+    {
+        Location* prev = nullptr;
+        for (int i = 0; i < inters.size(); i++) {
+            bool is_in_intersection = false;
+            int j;
+            for (j = 0; j < intersections.size(); j++)
+            {
+                if (inters[i].first == intersections[j]->get_latitude() && inters[i].second == intersections[j]->get_longitude())
+                {
+                    is_in_intersection = true;
+                    break;
+                }
+            }
+            if (!is_in_intersection)
+            {
+                Location *l = new Location(inters.first, inters.second);
+                intersections.push_back(l);
+                if(i > 0)
+                {
+                    l->add_connection(prev);
+                    prev->add_connection(l);
+                }
+                prev = l;
+            }
+            else
+            {
+                if (i > 0)
+                {
+                    intersections[j]->add_connection(prev);
+                    prev->add_connection(intersections[j]);
+                }
+                prev = intersections[j];
+            }
+        }
+    }
+
 private:
     std::vector<Location*> intersections;
     Risks current_risks;
