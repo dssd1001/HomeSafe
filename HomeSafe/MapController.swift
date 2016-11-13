@@ -23,8 +23,6 @@ class MapController: UIViewController, CLLocationManagerDelegate {
     
     var userLocation: CLLocationCoordinate2D!
     
-    var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +40,6 @@ class MapController: UIViewController, CLLocationManagerDelegate {
             lM.requestLocation()
         }
         
-        locationTuples = [(sourceField, nil), (destinationField, nil)]
-        
         let destinationUI:UIView = UIView(frame: CGRect(x: 5, y: 70, width: view.frame.width - 10, height: 50))
         destinationUI.backgroundColor = UIColor.white
         view.addSubview(destinationUI)
@@ -52,6 +48,8 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         destinationField.placeholder = "Enter your destination"
         destinationField.textAlignment = .center
         view.addSubview(destinationField)
+        
+        map.showsUserLocation = true
         
     }
     
@@ -68,16 +66,8 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         
         centerMapOnLocation(location: CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude))
         
-        CLGeocoder().reverseGeocodeLocation(locations.last!, completionHandler: {(placemarks:[CLPlacemark]?, error:NSError?) -> Void in if let placemarks = placemarks {
-                let placemark = placemarks[0]
-                self.locationTuples[0].mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:AnyObject]?))
-                self.sourceField.text = self.formatAddressFromPlacemark(placemark)
-                self.enterButtonArray.filter{$0.tag == 1}.first!.selected = true
-            }
-        } as! CLGeocodeCompletionHandler)
-        
         let annotation = ColorPointAnnotation(pinColor: UIColor.blue)
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 37.8684587, longitude: -122.2620742)
+        annotation.coordinate = userLocation
         map.addAnnotation(annotation)
         
 //        map.showAnnotations(map.annotations, animated: true)
@@ -101,10 +91,6 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         }
         
         return pinView
-    }
-    
-    func formatAddressFromPlacemark(placemark: CLPlacemark) -> String {
-        return (placemark.addressDictionary!["FormattedAddressLines"] as! [String]).joined(separator: ", ")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

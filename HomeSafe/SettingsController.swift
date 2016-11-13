@@ -8,14 +8,15 @@
 
 import UIKit
 
-class SettingsController: UIViewController, UIScrollViewDelegate {
+class SettingsController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
     
     let scrollView = UIScrollView(frame: UIScreen.main.bounds)
+    let tableView = UITableView(frame: UIScreen.main.bounds)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.orange
+        view.backgroundColor = UIColor.white
         
         let safety = UIImageView(image: UIImage(named: "muse.jpg"))
         let imgHeight = safety.image?.size.height
@@ -23,9 +24,14 @@ class SettingsController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = UIColor.white
         scrollView.contentSize = CGSize(width: view.frame.width, height: imgHeight!)
         scrollView.delegate = self
-        view.addSubview(scrollView)
+//        view.addSubview(scrollView)
         
         scrollView.addSubview(safety)
+        
+        
+        tableView.delegate = self
+        view.addSubview(tableView)
+        
     }
     
     override func didReceiveMemoryWarning() {
