@@ -14,6 +14,11 @@ public:
     {
 
     }
+    virtual ~Event()
+    {
+        delete location;
+        location = nullptr;
+    }
     Location * location;
     double danger;
     double radius;
@@ -28,10 +33,6 @@ public:
     }
     virtual ~Risks()
     {
-        for (int i = 0; i < static_cast<int>(mevents.size()); i++)
-        {
-            delete mevents[i].location;
-        }
     }
     void push_event(Location * loc, double danger, double radius)
     {

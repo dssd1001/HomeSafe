@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
-#include "Risks.h"
 
 class Location
 {
@@ -14,10 +13,6 @@ class Location
         {
             latitude = lat;
             longitude = lon;
-        }
-        virtual ~Location()
-        {
-
         }
 
         double get_latitude() const
@@ -36,7 +31,7 @@ class Location
         }
 
         // Calculates the Haversine distance between this and other
-        double distance(const Location& other)
+        double distance(const Location& other) const
         {
             double lon1 = longitude * (3.141592653) / 180;
             double lat1 = latitude * (3.141592653) / 180;
@@ -55,20 +50,6 @@ class Location
             return connections;
         }
 
-        double risk(const Location& other, const Risks& risks)
-        {
-            // Computes the risk between two Location objects
-            Location midpoint((this->latitude + other.latitude) / 2, (this->longitude + other.longitude) / 2);
-            double ret_value = 0;
-            for (auto event : risks.events())
-            {
-                double d = midpoint.distance(*(event.location));
-                double r = event.radius;
-                double danger = event.danger;
-                ret_value += danger * (r / d) * (r / d);
-            }
-            return ret_value + this->distance(other) * distance_weight;
-        }
     protected:
 
     private:

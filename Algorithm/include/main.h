@@ -59,7 +59,7 @@ public:
                 if (closedSet.find(neighbor) != closedSet.end())
                     continue; // Ignore the neighbor that is already evaluated
                 // The distance from start to a neighbor
-                double tentative_gScore = gScore[current] + current->risk(*neighbor, current_risks);
+                double tentative_gScore = gScore[current] + weight(*current, *neighbor, current_risks);
                 if (openSet.find(neighbor) == openSet.end())
                     openSet.insert(neighbor);
                 else if (tentative_gScore >= gScore[neighbor])
@@ -133,6 +133,19 @@ private:
             ret[i] = std::make_pair(total_path[i]->get_latitude(), total_path[i]->get_longitude());
         }
         return ret;
+    }
+    double weight(const Location& self, const Location& other, const Risks& risks)
+    {
+        Location midpoint((self.get_latitude() + other.get_latitude()) / 2, (self.get_longitude() + other.get_longitude()) / 2);
+        double ret_value = 0;
+        for (auto event : risks.events())
+        {
+            double d = midpoint.distance(*(event.location));
+            double r = event.radius;
+            double danger = event.danger;
+            ret_value += danger * (r / d) * (r / d);
+        }
+        return ret_value + self.distance(other) * self.distance_weight;
     }
 };
 
