@@ -20,8 +20,20 @@ public:
         }
     }
 
-    std::vector<std::pair<double, double> > Astar(Location* start, Location* goal)
+    std::vector<std::pair<double, double> > Astar(double start_lat, double start_lon, double goal_lat, double goal_lon)
     {
+        Location st(start_lat, start_lon);
+        Location go(goal_lat, goal_lon); // The start and goal Location objects
+        Location * start = *std::min_element(intersections.begin(), intersections.end(),
+                                            [st](Location * a, Location * b) -> bool
+                                            {
+                                                return a->distance(st) < b->distance(st);
+                                            });
+        Location * goal = *std::min_element(intersections.begin(), intersections.end(),
+                                            [go](Location * a, Location * b) -> bool
+                                            {
+                                                return a->distance(go) < b->distance(go);
+                                            });
         std::set<Location*> closedSet;
         std::set<Location*> openSet;
         openSet.insert(start);

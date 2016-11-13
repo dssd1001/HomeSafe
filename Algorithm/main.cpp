@@ -33,7 +33,7 @@ int main()
     cout.precision(10);
     cout << *(i[0]) << endl;
     cout << *(i[12]) << endl;
-    vector< pair<double, double> > path = berkeley.Astar(i[0], i[12]);
+    vector< pair<double, double> > path = berkeley.Astar(37.877302, -122.257087, 37.875479, -122.258235);
     for (int i = 0; i < path.size(); i++)
     {
         cout << path[i].first << " " << path[i].second << endl;
