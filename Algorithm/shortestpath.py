@@ -165,46 +165,6 @@ def A(start, goal):
             fScore[neighbor] = gScore[neighbor] + heuristic_cost_estimate(neighbor, goal)
     
     raise NoPathError
-
-def encoded_polyline_algorithm_format(locations):
-    """Takes in location objects and returns an encoded string for the polyline algorithm 
-    >>> l1 = Location(38.5, -120.2)
-    >>> l2 = Location(40.7, -120.95)
-    >>> l3 = Location(43.252, -126.453)
-    >>> encoded_polyline_algorithm_format([l1, l2, l3])
-    '_p~iF~ps|U_ulLnnqC_mqNvxq`@'
-    """
-    # First, take the differences between consecutive locations
-    for i in range(len(locations) - 1, 0, -1):
-        locations[i] = (locations[i][0] - locations[i-1][0], locations[i][1] - locations[i-1][1])
-    # Multiply everything by 10^5
-    ret = []
-    for i in range(len(locations)):
-        locations[i] = (round(1e5 * locations[i][0]), round(locations[i][1] * 1e5))
-        is_neg0 = locations[i][0] < 0
-        is_neg1 = locations[i][1] < 0
-        # Each of these will be bit arrays 
-        lat, long = binary(locations[i][0]), binary(locations[i][1])
-        left_shift(lat)
-        left_shift(long)
-        if is_neg0:
-            invert(lat)
-        if is_neg1:
-            invert(long)
-        lat_chunk = [lat[5 * i : 5 * i + 5] for i in range(6)]
-        long_chunk = [lat[5 * i : 5 * i + 5] for i in range(6)]
-        for elem in lat_chunk:
-            elem.append(True)
-        for elem in long_chunk:
-            elem.append(True)
-        lat_chunk[-1][-1] = False
-        long_chunk[-1][-1] = False
-        for i in range(len(lat_chunk)):
-            lat_chunk[i] = chr(int_convert(lat_chunk[i]) + 63)
-            long_chunk[i] = chr(int_convert(long_chunk[i]) + 63)
-        ret.append(sum(lat_chunk, ""))
-        ret.append(sum(long_chunk, ""))
-    return ret
         
 def reconstruct_path(cameFrom, current):
     total_path = [current]
