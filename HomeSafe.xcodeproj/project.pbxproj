@@ -130,7 +130,6 @@
 		4127B5E31DD7391900B9C643 /* HomeSafe */ = {
 			isa = PBXGroup;
 			children = (
-				57226DA81DD8805400D9FE6E /* MapController.swift */,
 				57226DA21DD87FFF00D9FE6E /* incidents.plist */,
 				57226DA31DD87FFF00D9FE6E /* intersections.plist */,
 				57226DA41DD87FFF00D9FE6E /* Location.swift */,
@@ -138,6 +137,7 @@
 				4127B5E81DD7391900B9C643 /* Main.storyboard */,
 				4127B5E41DD7391900B9C643 /* AppDelegate.swift */,
 				4127B5E61DD7391900B9C643 /* MainController.swift */,
+				57226DA81DD8805400D9FE6E /* MapController.swift */,
 				4127B6191DD73D7300B9C643 /* InfoController.swift */,
 				4127B61D1DD7408F00B9C643 /* AlertController.swift */,
 				4127B61B1DD73D8800B9C643 /* SettingsController.swift */,
