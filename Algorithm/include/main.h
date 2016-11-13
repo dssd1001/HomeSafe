@@ -14,7 +14,7 @@ public:
     City() = default;
     virtual ~City()
     {
-        for (int i = 0; i < intersections.size(); i++)
+        for (int i = 0; i < (int) intersections.size(); i++)
         {
             delete intersections[i];
         }
@@ -75,9 +75,9 @@ public:
     void push_street(std::vector< std::pair<double, double> > inters)
     {
         Location* prev = nullptr;
-        for (int i = 0; i < inters.size(); i++) {
+        for (int i = 0; i < static_cast<int>(inters.size()); i++) {
             bool is_in_intersection = false;
-            int j;
+            unsigned int j;
             for (j = 0; j < intersections.size(); j++)
             {
                 if (inters[i].first == intersections[j]->get_latitude() && inters[i].second == intersections[j]->get_longitude())
@@ -128,7 +128,7 @@ private:
         }
         std::reverse(total_path.begin(), total_path.end());
         std::vector< std::pair<double, double> > ret(total_path.size());
-        for (int i = 0; i < total_path.size(); i++)
+        for (unsigned int i = 0; i < total_path.size(); i++)
         {
             ret[i] = std::make_pair(total_path[i]->get_latitude(), total_path[i]->get_longitude());
         }

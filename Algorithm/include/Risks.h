@@ -28,7 +28,7 @@ public:
     }
     virtual ~Risks()
     {
-        for (int i = 0; i < mevents.size(); i++)
+        for (int i = 0; i < static_cast<int>(mevents.size()); i++)
         {
             delete mevents[i].location;
         }
