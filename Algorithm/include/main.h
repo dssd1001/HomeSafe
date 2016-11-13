@@ -31,13 +31,13 @@ public:
         std::map<Location*, double> gScore;
         // The cost of going from start to start is zero
         gScore[start] = 0;
-
         // For each node, the total cost of getting from the start node to the goal
         // by passing by that node. That value is partly known, partly heuristic
         std::map<Location*, double> fScore;
         fScore[start] = start->distance(*goal) * start->distance_weight;
         while (!openSet.empty())
         {
+
             Location* current = *(std::min_element(openSet.begin(), openSet.end(), [fScore] (Location* a, Location* b) mutable -> bool
                                          { if (fScore.count(a))
                                             {
@@ -54,6 +54,9 @@ public:
                                         ));
             if (current == goal)
                 return reconstruct_path(cameFrom, current);
+
+            openSet.erase(current);
+            closedSet.insert(current);
             for (Location* neighbor : current->get_connections())
             {
                 if (closedSet.find(neighbor) != closedSet.end())
@@ -109,6 +112,10 @@ public:
         }
     }
 
+    std::vector<Location*> get_intersections() const
+    {
+        return intersections;
+    }
     void push_event(double latitude, double longitude, double danger, double radius)
     {
         Location* l = new Location(latitude, longitude);
