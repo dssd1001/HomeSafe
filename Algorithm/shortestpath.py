@@ -96,7 +96,7 @@ def A(start, goal):
     fScore[start] = heuristic_cost_estimate(start, goal)
 
     while openSet:
-        current = min(openSet, lambda x : fScore[x]) # the node in openSet with the lowest fScore value
+        current = min(openSet, key = lambda x : fScore[x]) # the node in openSet with the lowest fScore value
         if current == goal:
             return reconstruct_path(cameFrom, current)
 
@@ -121,7 +121,7 @@ def A(start, goal):
 
 def reconstruct_path(cameFrom, current):
     total_path = [current]
-    while current in cameFrom.Keys:
+    while current in cameFrom.keys():
         current = cameFrom[current]
         total_path.append(current)
     return total_path
