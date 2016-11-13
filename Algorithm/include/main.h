@@ -35,7 +35,7 @@ public:
         // For each node, the total cost of getting from the start node to the goal
         // by passing by that node. That value is partly known, partly heuristic
         std::map<Location*, double> fScore;
-        fScore[start] = start->distance(*goal);
+        fScore[start] = start->distance(*goal) * start->distance_weight;
         while (!openSet.empty())
         {
             Location* current = *(std::min_element(openSet.begin(), openSet.end(), [fScore] (Location* a, Location* b) mutable -> bool
@@ -67,7 +67,7 @@ public:
 
                 cameFrom[neighbor] = current;
                 gScore[neighbor] = tentative_gScore;
-                fScore[neighbor] = gScore[neighbor] + neighbor->distance(*goal);
+                fScore[neighbor] = gScore[neighbor] + neighbor->distance(*goal) * neighbor->distance_weight;
             }
         }
     }
