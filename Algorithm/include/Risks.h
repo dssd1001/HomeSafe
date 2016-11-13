@@ -37,7 +37,7 @@ public:
     {
         mevents.push_back(Event(loc, danger, radius));
     }
-    std::vector<Event> events()
+    std::vector<Event> events() const
     {
         return mevents;
     }

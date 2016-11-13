@@ -20,11 +20,11 @@ class Location
 
         }
 
-        double get_latitude()
+        double get_latitude() const
         {
             return latitude;
         }
-        double get_longitude()
+        double get_longitude() const
         {
             return longitude;
         }

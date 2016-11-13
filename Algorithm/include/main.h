@@ -35,10 +35,10 @@ public:
         // For each node, the total cost of getting from the start node to the goal
         // by passing by that node. That value is partly known, partly heuristic
         std::map<Location*, double> fScore;
-        fScore[start] = start->distance(goal);
+        fScore[start] = start->distance(*goal);
         while (!openSet.empty())
         {
-            Location* current = std::min(openSet.begin(), openSet.end(), [fScore](Location* a, Location* b) -> bool
+            Location* current = std::min_element(openSet.begin(), openSet.end(), [fScore] (Location* a, Location* b) mutable -> bool
                                          { if (fScore.count(a))
                                             {
                                                 if (fScore.count(b))
@@ -51,10 +51,10 @@ public:
                                             }
                                             else { return false; }
                                          }
-                                        )
+                                        );
             if (current == goal)
                 return reconstruct_path(cameFrom, current);
-            for (Location* neighbor : current->connections)
+            for (Location* neighbor : current->get_connections())
             {
                 if (closedSet.find(neighbor) != closedSet.end())
                     continue; // Ignore the neighbor that is already evaluated
