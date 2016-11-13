@@ -68,6 +68,22 @@ public:
 private:
     std::vector<Location*> intersections;
     Risks current_risks;
+    std::vector<Location*> reconstruct_path(const std::map<Location*, Location*>& cameFrom, Location* current)
+    {
+        std::vector<Location*> total_path(1, current);
+        while (cameFrom.count(current))
+        {
+            current = cameFrom[current];
+            total_path.push_back(current);
+        }
+        std::reverse(total_path.begin(), total_path.end());
+        std::vector< std::pair<double, double> > ret(total_path.size());
+        for (int i = 0; i < total_path.size(); i++)
+        {
+            ret[i] = std::make_pair(total_path[i]->get_latitude(), total_path[i]->longitude());
+        }
+        return ret;
+    }
 };
 
 #endif // MAIN_H_INCLUDED
