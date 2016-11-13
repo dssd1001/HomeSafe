@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
     
     /*
      Add UITextField for Current/Destination locations.
@@ -48,6 +48,7 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         let destinationField:UITextField = UITextField(frame: CGRect(x: 5, y: 70, width: view.frame.width - 10, height: 40))
         destinationField.placeholder = "Enter your destination"
         destinationField.textAlignment = .center
+        destinationField.delegate = self
         view.addSubview(destinationField)
         
         map.showsUserLocation = true
@@ -65,6 +66,11 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         let polyline = MKPolyline(coordinates: points, count: points.count)
         map.add(polyline)
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
     
     //

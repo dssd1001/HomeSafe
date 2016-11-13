@@ -15,7 +15,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = UIColor.lightGray
+        tableView.backgroundColor = UIColor(red: 160.0 / 255.0, green: 201.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationItem.title = "Settings"
@@ -77,7 +77,12 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if (indexPath.section == 1 && indexPath.row == 0) {
+            return false
+        }
+        return true
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 2) {
@@ -90,12 +95,12 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor.lightGray
+        header.contentView.backgroundColor = UIColor(red: 160.0 / 255.0, green: 201.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
     }
     
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         let footer: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        footer.contentView.backgroundColor = UIColor.lightGray
+        footer.contentView.backgroundColor = UIColor(red: 160.0 / 255.0, green: 201.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
