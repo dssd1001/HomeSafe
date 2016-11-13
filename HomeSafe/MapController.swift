@@ -27,6 +27,9 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "HomeSafe"
+
+        
         map.mapType = MKMapType.standard
         map.isZoomEnabled = true
         map.isScrollEnabled = true

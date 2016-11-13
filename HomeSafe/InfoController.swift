@@ -19,7 +19,7 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.tintColor = UIColor.black
-        navigationItem.title = "HomeSafe"
+        navigationItem.title = "Incidents"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.addPressed(_:)))
         
         tableView.backgroundColor = UIColor.white
@@ -76,6 +76,7 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InfoCell
         let vc = CustomMapController()
         vc.userLocation = cell.coord
+        vc.ntitle = cell.title.text
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -100,12 +101,12 @@ class InfoCell: TableCell {
         coord = CLLocationCoordinate2D()
         
         title = UILabel()
-        title.font = UIFont.boldSystemFont(ofSize: 18)
+        title.font = UIFont.boldSystemFont(ofSize: 15)
         
         distance = UILabel()
         distance.text = "< 1 mile away"
         distance.textColor = UIColor.lightGray
-        distance.font = UIFont.systemFont(ofSize: 14)
+        distance.font = UIFont.systemFont(ofSize: 12)
         
         timestamp = UILabel()
         timestamp.text = "1 hr"
@@ -114,7 +115,7 @@ class InfoCell: TableCell {
         
         content = UILabel()
         content.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a cursus leo. Aenean at orci bibendum, malesuada orci facilisis, commodo turpis. Integer quis ornare massa."
-        content.font = UIFont.systemFont(ofSize: 14)
+        content.font = UIFont.systemFont(ofSize: 13)
         content.numberOfLines = 0
         
         contentView.addSubview(title)

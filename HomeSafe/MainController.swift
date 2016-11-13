@@ -19,23 +19,18 @@ class MainController: UITabBarController {
         let first = MapController()
         let firstNav = UINavigationController(rootViewController: first)
         firstNav.tabBarItem.title = "Map"
-        firstNav.tabBarItem.image = UIImage(named: "quests")
-        //        firstNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.black], for: .normal)
-        //        firstNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.white], for: .selected)
+        firstNav.tabBarItem.image = UIImage(named: "Map")
+//        firstNav.tabBarItem.imageInsets = 
         
         let second = InfoController()
         let secondNav = UINavigationController(rootViewController: second)
         secondNav.tabBarItem.title = "Feed"
-        secondNav.tabBarItem.image = UIImage(named: "quests")
-        //        secondNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.black], for: .normal)
-        //        secondNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.white], for: .selected)
+        secondNav.tabBarItem.image = UIImage(named: "Feed")
         
         let third = SettingsController()
         let thirdNav = UINavigationController(rootViewController: third)
         thirdNav.tabBarItem.title = "Settings"
-        thirdNav.tabBarItem.image = UIImage(named: "quests")
-        //        thirdNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.black], for: .normal)
-        //        thirdNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.white], for: .selected)
+        thirdNav.tabBarItem.image = UIImage(named: "Settings")
         
         viewControllers = [firstNav, secondNav, thirdNav]
         

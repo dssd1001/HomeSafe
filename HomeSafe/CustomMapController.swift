@@ -14,6 +14,7 @@ class CustomMapController: UIViewController, CLLocationManagerDelegate {
     let lM = CLLocationManager()
     var map = MKMapView(frame: UIScreen.main.bounds)
     var userLocation: CLLocationCoordinate2D!
+    var ntitle: String?
     
     var eventButton: UIButton!
     let eventPicker = UIPickerView(frame: CGRect(x: 5, y: 70 + 150, width: UIScreen.main.bounds.width - 10, height: 100))
@@ -24,7 +25,7 @@ class CustomMapController: UIViewController, CLLocationManagerDelegate {
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.tintColor = UIColor.black
-        navigationItem.title = "HomeSafe"
+        navigationItem.title = ntitle
         
         map.mapType = MKMapType.standard
         map.isZoomEnabled = true

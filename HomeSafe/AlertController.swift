@@ -24,7 +24,7 @@ class AlertController: UIViewController, CLLocationManagerDelegate, UIPickerView
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.tintColor = UIColor.black
-        navigationItem.title = "HomeSafe"
+        navigationItem.title = "Log Incident"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.doneAdding(_:)))
         
         map.mapType = MKMapType.standard
