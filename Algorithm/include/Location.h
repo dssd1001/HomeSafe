@@ -65,7 +65,7 @@ class Location
             double ret_value = 0;
             for (auto event : risks.events())
             {
-                double d = midpoint.distance(event.location);
+                double d = midpoint.distance(*(event.location));
                 double r = event.radius;
                 double danger = event.danger;
                 ret_value += danger * (r / d) * (r / d);

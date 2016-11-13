@@ -109,6 +109,12 @@ public:
         }
     }
 
+    void push_event(double latitude, double longitude, double danger, double radius)
+    {
+        Location* l = new Location(latitude, longitude);
+        current_risks.push_event(l, danger, radius);
+    }
+
 private:
     std::vector<Location*> intersections;
     Risks current_risks;

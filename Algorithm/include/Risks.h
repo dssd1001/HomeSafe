@@ -12,7 +12,6 @@ public:
     {
 
     }
-private:
     Location * location;
     double danger;
     double radius;
@@ -24,6 +23,13 @@ public:
     Risks()
     {
 
+    }
+    virtual ~Risks()
+    {
+        for (int i = 0; i < mevents.size(); i++)
+        {
+            delete mevents[i].location;
+        }
     }
     void push_event(Location * loc, double danger, double radius)
     {
