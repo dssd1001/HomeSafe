@@ -7,6 +7,7 @@
 #include "Risks.h"
 #include <set>
 #include <map>
+#include <fstream>
 
 class City
 {
@@ -129,6 +130,29 @@ public:
         }
     }
 
+    void load_street()
+    {
+        std::ifstream fin;
+        fin.open("inputdata.txt");
+
+        for (int i = 0; i < 28; i++)
+        {
+            double x, y;
+            std::vector< std::pair<double, double> > inters;
+            while (true)
+            {
+                fin >> x;
+                if (x == 696969) {
+                    break;
+                }
+
+                fin >> y;
+                inters.push_back(std::make_pair(x, y));
+            }
+            this->push_street(inters);
+        }
+        fin.close();
+    }
     std::vector<Location*> get_intersections() const
     {
         return intersections;
