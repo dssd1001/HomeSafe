@@ -137,6 +137,10 @@ public:
     {
         current_risks.push_event(latitude, longitude, danger, radius);
     }
+    void clear_events()
+    {
+        current_risks.clear_events();
+    }
 
 private:
     std::vector<Location*> intersections;

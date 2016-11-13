@@ -35,6 +35,10 @@ public:
     {
         mevents.push_back(Event(lat, lon, danger, radius));
     }
+    void clear_events()
+    {
+        mevents.clear();
+    }
     std::vector<Event> events() const
     {
         return mevents;
