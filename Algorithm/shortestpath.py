@@ -1,6 +1,40 @@
 import collections
 from math import radians, cos, sin, asin, sqrt
 
+### To do bit processing stuff ###
+
+def binary(i):
+    """Gives the 32-bit binary of i
+    >>> binary(15)
+    [True, True, True, True, False, False, ...]
+    """
+    ret = [False] * 32
+    is_neg = False
+    if i < 0:
+        is_neg = True
+        i = -i
+    counter = 0
+    while i > 0:
+        ret[counter] = bool(i % 2)
+        i //= 2
+        counter += 1
+    if is_neg:
+        # Flip all the bits
+        for i in range(len(ret)):
+            ret[i] = not ret[i]
+        
+        # Now add one to the result 
+        carry = ret[0]
+        counter = 0
+        ret[counter] = not ret[counter]
+        while carry and counter < 31:
+            counter += 1
+            carry = ret[counter]
+            ret[counter] = not ret[counter]
+    return ret
+
+### --- END --- ###
+
 class NoPathError(Exception):
     pass
 
@@ -119,9 +153,27 @@ def A(start, goal):
     
     raise NoPathError
 
+def encoded_polyline_algorithm_format(locations):
+    """Takes in location objects and returns an encoded string for the polyline algorithm 
+    >>> l1 = Location(38.5, -120.2)
+    >>> l2 = Location(40.7, -120.95)
+    >>> l3 = Location(43.252, -126.453)
+    >>> encoded_polyline_algorithm_format([l1, l2, l3])
+    '_p~iF~ps|U_ulLnnqC_mqNvxq`@'
+    """
+    # First, take the differences between consecutive locations
+    for i in range(len(locations) - 1, 0, -1):
+        locations[i] -= locations[i-1]
+    # Multiply everything by 10^5
+    for i in range(len(locations)):
+        locations[i] *= 1e5
+        locations[i] = round(locations[i])
+    
+    
 def reconstruct_path(cameFrom, current):
     total_path = [current]
     while current in cameFrom.keys():
         current = cameFrom[current]
         total_path.append(current)
-    return total_path
+    total_path.reverse()
+    return encoded_polyline_algorithm_format(total_path)
