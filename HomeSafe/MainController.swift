@@ -25,7 +25,7 @@ class MainController: UITabBarController {
         
         let second = InfoController()
         let secondNav = UINavigationController(rootViewController: second)
-        secondNav.tabBarItem.title = "Info"
+        secondNav.tabBarItem.title = "Feed"
         secondNav.tabBarItem.image = UIImage(named: "quests")
         //        secondNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.black], for: .normal)
         //        secondNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.white], for: .selected)

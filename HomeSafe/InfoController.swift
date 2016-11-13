@@ -9,7 +9,7 @@
 import UIKit
 
 class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     let tableView = UITableView(frame: UIScreen.main.bounds)
     
     override func viewDidLoad() {
@@ -65,7 +65,9 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("this should trigger a new map")
+        let vc = MapController()
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -106,7 +108,7 @@ class InfoCell: TableCell {
         
         content = UILabel()
         content.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a cursus leo. Aenean at orci bibendum, malesuada orci facilisis, commodo turpis. Integer quis ornare massa."
-        content.font = UIFont.boldSystemFont(ofSize: 16)
+        content.font = UIFont.systemFont(ofSize: 16)
         content.numberOfLines = 0
         
         contentView.addSubview(title)
@@ -124,15 +126,4 @@ class InfoCell: TableCell {
         contentView.addConstraintFormat("V:|-15-[v0]", views: timestamp)
     }
     
-}
-
-func newInstLabel(_ content: String, frame: CGRect) -> UILabel {
-    let label = UILabel(frame: frame)
-    label.text = content
-    label.textColor = UIColor.white
-//    label.font = UIFont.pmInstructionFont()
-    label.numberOfLines = 0
-    label.textAlignment = NSTextAlignment.center
-    
-    return label
 }
