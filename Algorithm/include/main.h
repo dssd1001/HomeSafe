@@ -67,7 +67,7 @@ public:
 
                 cameFrom[neighbor] = current;
                 gScore[neighbor] = tentative_gScore;
-                fScore[neighbor] = gScore[neighbor] + neighbor->risk(goal);
+                fScore[neighbor] = gScore[neighbor] + neighbor->distance(*goal);
             }
         }
     }
@@ -88,7 +88,7 @@ public:
             }
             if (!is_in_intersection)
             {
-                Location *l = new Location(inters.first, inters.second);
+                Location *l = new Location(inters[i].first, inters[i].second);
                 intersections.push_back(l);
                 if(i > 0)
                 {
