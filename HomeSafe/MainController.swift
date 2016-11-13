@@ -37,7 +37,7 @@ class MainController: UITabBarController {
 //        thirdNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.black], for: .normal)
 //        thirdNav.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.pmTabFont()!, NSForegroundColorAttributeName : UIColor.white], for: .selected)
 
-        viewControllers = [thirdNav, firstNav, secondNav]
+        viewControllers = [firstNav, secondNav, thirdNav]
         
     }
     

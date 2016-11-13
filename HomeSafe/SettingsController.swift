@@ -42,6 +42,8 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     let thirdSetting = ["Help", "Legal", "About"]
     
+    let helpContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a cursus leo. Aenean at orci bibendum, malesuada orci facilisis, commodo turpis. Integer quis ornare massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. In sagittis ullamcorper magna, sagittis sollicitudin metus vestibulum in. Fusce vitae nunc mattis, auctor leo sed, pellentesque ex. Fusce convallis elit non ipsum ultrices, quis pellentesque sapien ornare. Nunc aliquam vitae odio sit amet dictum. Pellentesque sit amet sodales risus. Quisque mattis mi eu diam imperdiet lacinia.\n\n\n Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec posuere nisl sit amet tortor accumsan mattis. Nulla bibendum ligula nunc, non semper velit auctor eget. Vestibulum viverra neque quis blandit dictum. Morbi congue vel lorem vitae laoreet. Aenean nec volutpat justo. Nullam mollis non massa in eleifend.\n\n\n Mauris faucibus fringilla tortor, at semper libero porta eu. Nulla facilisi. Proin et sodales sapien, sed sagittis augue. Nunc in efficitur dolor. Aliquam iaculis, risus et malesuada cursus, mi sem varius augue, ac euismod sapien lacus quis est. Praesent laoreet metus sit amet mattis sodales. Phasellus at dapibus velit. Aliquam dapibus odio at iaculis dictum. Praesent suscipit posuere urna, id hendrerit urna venenatis in. In ut augue ante. Maecenas nec tempus neque. Mauris nec ultrices elit."
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "cellID")
@@ -72,6 +74,17 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
             cell.textLabel?.text = "\(thirdSetting[indexPath.row])"
             
             return cell
+        }
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.section == 2) {
+            let vc = StaticSettingsController()
+            vc.content.text = helpContent
+            
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     

@@ -19,9 +19,10 @@
 		4127B6181DD73D6A00B9C643 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B6171DD73D6A00B9C643 /* MapController.swift */; };
 		4127B61A1DD73D7300B9C643 /* InfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B6191DD73D7300B9C643 /* InfoController.swift */; };
 		4127B61C1DD73D8800B9C643 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B61B1DD73D8800B9C643 /* SettingsController.swift */; };
-		4127B61E1DD7408F00B9C643 /* StaticMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B61D1DD7408F00B9C643 /* StaticMapController.swift */; };
+		4127B61E1DD7408F00B9C643 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B61D1DD7408F00B9C643 /* AlertController.swift */; };
 		4127B6211DD7800300B9C643 /* muse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4127B6201DD7800300B9C643 /* muse.jpg */; };
 		4127B6241DD78E7700B9C643 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4127B6231DD78E7700B9C643 /* MapKit.framework */; };
+		4127B62D1DD8405B00B9C643 /* StaticSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B62C1DD8405B00B9C643 /* StaticSettingsController.swift */; };
 		57DC35C81DD8171900F974DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DC35C71DD8171900F974DA /* UIKit.framework */; };
 		57DC35CA1DD8172500F974DA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DC35C91DD8172500F974DA /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -62,9 +63,10 @@
 		4127B6171DD73D6A00B9C643 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		4127B6191DD73D7300B9C643 /* InfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
 		4127B61B1DD73D8800B9C643 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		4127B61D1DD7408F00B9C643 /* StaticMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMapController.swift; sourceTree = "<group>"; };
+		4127B61D1DD7408F00B9C643 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		4127B6201DD7800300B9C643 /* muse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = muse.jpg; sourceTree = "<group>"; };
 		4127B6231DD78E7700B9C643 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4127B62C1DD8405B00B9C643 /* StaticSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticSettingsController.swift; sourceTree = "<group>"; };
 		57DC35C71DD8171900F974DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57DC35C91DD8172500F974DA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -128,8 +130,9 @@
 				4127B5E61DD7391900B9C643 /* MainController.swift */,
 				4127B6171DD73D6A00B9C643 /* MapController.swift */,
 				4127B6191DD73D7300B9C643 /* InfoController.swift */,
-				4127B61D1DD7408F00B9C643 /* StaticMapController.swift */,
+				4127B61D1DD7408F00B9C643 /* AlertController.swift */,
 				4127B61B1DD73D8800B9C643 /* SettingsController.swift */,
+				4127B62C1DD8405B00B9C643 /* StaticSettingsController.swift */,
 				4127B6151DD73BF400B9C643 /* Support.swift */,
 				4127B5EE1DD7391900B9C643 /* Assets.xcassets */,
 				4127B5F31DD7391900B9C643 /* Info.plist */,
@@ -314,13 +317,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4127B62D1DD8405B00B9C643 /* StaticSettingsController.swift in Sources */,
 				4127B5E71DD7391900B9C643 /* MainController.swift in Sources */,
 				4127B6161DD73BF400B9C643 /* Support.swift in Sources */,
 				4127B61C1DD73D8800B9C643 /* SettingsController.swift in Sources */,
 				4127B5ED1DD7391900B9C643 /* HomeSafe.xcdatamodeld in Sources */,
 				4127B6181DD73D6A00B9C643 /* MapController.swift in Sources */,
 				4127B61A1DD73D7300B9C643 /* InfoController.swift in Sources */,
-				4127B61E1DD7408F00B9C643 /* StaticMapController.swift in Sources */,
+				4127B61E1DD7408F00B9C643 /* AlertController.swift in Sources */,
 				4127B5E51DD7391900B9C643 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,11 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationItem.title = "HomeSafe"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.addPressed(_:)))
+        
         tableView.backgroundColor = UIColor.white
         tableView.register(InfoCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
@@ -25,12 +30,14 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    /*
-     Cells that trigger maps with what?
-    */
+    func addPressed(_ sender: UIButton) {
+        let vc = AlertController()
+        let navController = UINavigationController(rootViewController: vc)
+        present(navController, animated:true, completion: nil)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return view.frame.height/3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,38 +46,21 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        cell.backgroundColor = UIColor.black
-        cell.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 99)
+        let cell = InfoCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        cell.backgroundColor = UIColor.lightGray
+        cell.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/3 - 1)
         
         let thumbnail: UIView = {
-            let thumbView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 99))
+            let thumbView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/3 - 1))
             thumbView.backgroundColor = UIColor.white
             thumbView.clipsToBounds = true
 
             return thumbView
         }()
         cell.contentView.addSubview(thumbnail)
+        cell.contentView.sendSubview(toBack: thumbnail)
         
         return cell
-        
-//        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-//        cell.backgroundColor = UIColor.clear
-//        cell.frame = CGRect(x: 10, y: 8, width: view.frame.width - 20, height: 250)
-//        
-//        let thumbnail: UIView = {
-//            let thumbView = UIView(frame: CGRect(x: 10, y: 8, width: view.frame.width - 20, height: 80))
-//            thumbView.backgroundColor = UIColor.lightGray
-//            thumbView.clipsToBounds = true
-//            
-//            thumbView.layer.cornerRadius = 5;
-//            
-//            return thumbView
-//        }()
-//        cell.contentView.addSubview(thumbnail)
-//        cell.contentView.sendSubview(toBack: thumbnail)
-//        
-//        return cell
         
     }
     
@@ -87,13 +77,62 @@ class InfoController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 }
 
-class InfoCell: UITableViewCell {
+class InfoCell: TableCell {
+    
+    var title: UILabel!
+    var address: UILabel!
+    var distance: UILabel!
+    var content: UILabel!
+    var timestamp: UILabel!
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override func setup() {
+        title = UILabel()
+        title.text = "Hello"
+        title.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        address = UILabel()
+        address.text = "ur a POS Avenue"
+        address.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        distance = UILabel()
+        distance.text = "< 1 mile away"
+        distance.textColor = UIColor.lightGray
+        distance.font = UIFont.systemFont(ofSize: 14)
+        
+        timestamp = UILabel()
+        timestamp.text = "1 hr"
+        timestamp.textColor = UIColor.lightGray
+        timestamp.font = UIFont.systemFont(ofSize: 14)
+        
+        content = UILabel()
+        content.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a cursus leo. Aenean at orci bibendum, malesuada orci facilisis, commodo turpis. Integer quis ornare massa."
+        content.font = UIFont.boldSystemFont(ofSize: 16)
+        content.numberOfLines = 0
+        
+        contentView.addSubview(title)
+        contentView.addSubview(address)
+        contentView.addSubview(distance)
+        contentView.addSubview(timestamp)
+        contentView.addSubview(content)
+        
+        contentView.addConstraintFormat("H:|-15-[v0]", views: title)
+        contentView.addConstraintFormat("H:|-15-[v0]", views: address)
+        contentView.addConstraintFormat("H:|-15-[v0]", views: distance)
+        contentView.addConstraintFormat("H:[v0]-15-|", views: timestamp)
+        contentView.addConstraintFormat("H:|-15-[v0]-15-|", views: content)
+        contentView.addConstraintFormat("V:|-15-[v0][v1][v2]-15-[v3]", views: title, address, distance, content)
+        contentView.addConstraintFormat("V:|-15-[v0]", views: timestamp)
     }
     
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:)")
-    }
+}
+
+func newInstLabel(_ content: String, frame: CGRect) -> UILabel {
+    let label = UILabel(frame: frame)
+    label.text = content
+    label.textColor = UIColor.white
+//    label.font = UIFont.pmInstructionFont()
+    label.numberOfLines = 0
+    label.textAlignment = NSTextAlignment.center
+    
+    return label
 }
