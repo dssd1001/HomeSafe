@@ -32,12 +32,15 @@ def binary(i):
             carry = ret[counter]
             ret[counter] = not ret[counter]
     return ret
+def invert(s):
+    """Invert the bits of s"""
+    for i in range(len(s)):
+        s[i] = not s[i]
 
 def left_shift(s):
     for i in range(len(s) - 1, 0, -1):
         s[i] = s[i-1]
     s[0] = False
-    return s
 ### --- END --- ###
 
 class NoPathError(Exception):
@@ -168,17 +171,30 @@ def encoded_polyline_algorithm_format(locations):
     """
     # First, take the differences between consecutive locations
     for i in range(len(locations) - 1, 0, -1):
-        locations[i] -= locations[i-1]
+        locations[i] = (locations[i].lat - locations[i-1].lat, locations[i].long - locations[i-1].long)
     # Multiply everything by 10^5
     for i in range(len(locations)):
-        locations[i] *= 1e5
-        locations[i] = round(locations[i])
-    
-    
+        locations[i] = (round(1e5 * locations[i][0]), round(locations[i][1] * 1e5))
+        if locations[i][0] < 0:
+            is_neg0 = True
+        if locations[i][1] < 0:
+            is_neg1 = True
+        # Each of these will be bit arrays 
+        lat, long = binary(locations[i][0]), binary(locations[i][1])
+        left_shift(lat)
+        left_shift(long)
+        if is_neg0:
+            invert(lat)
+        if is_neg1:
+            invert(long)
+        lat_chunk = [lat[5 * i : 5 * i + 5] for i in range(6)]
+        
 def reconstruct_path(cameFrom, current):
     total_path = [current]
     while current in cameFrom.keys():
         current = cameFrom[current]
         total_path.append(current)
     total_path.reverse()
+    for i in range(len(total_path)):
+        total_path[i] = (total_path[i].lat, total_path[i].long)
     return encoded_polyline_algorithm_format(total_path)
