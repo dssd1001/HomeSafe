@@ -65,7 +65,12 @@ public:
                                          }
                                         ));
             if (current == goal)
-                return reconstruct_path(cameFrom, current);
+            {
+                auto v = reconstruct_path(cameFrom, current);
+                v.insert(v.begin(), std::make_pair(start_lat, start_lon));
+                v.insert(v.end(), std::make_pair(goal_lat, goal_lon));
+                return v;
+            }
 
             openSet.erase(current);
             closedSet.insert(current);
