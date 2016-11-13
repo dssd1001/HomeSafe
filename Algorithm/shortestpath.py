@@ -1,6 +1,53 @@
 import collections
 from math import radians, cos, sin, asin, sqrt
 
+### To do bit processing stuff ###
+
+def binary(i):
+    """Gives the 32-bit binary of i
+    >>> binary(15)
+    [True, True, True, True, False, False, ...]
+    """
+    ret = [False] * 32
+    is_neg = False
+    if i < 0:
+        is_neg = True
+        i = -i
+    counter = 0
+    while i > 0:
+        ret[counter] = bool(i % 2)
+        i //= 2
+        counter += 1
+    if is_neg:
+        # Flip all the bits
+        for i in range(len(ret)):
+            ret[i] = not ret[i]
+        
+        # Now add one to the result 
+        carry = ret[0]
+        counter = 0
+        ret[counter] = not ret[counter]
+        while carry and counter < 31:
+            counter += 1
+            carry = ret[counter]
+            ret[counter] = not ret[counter]
+    return ret
+def invert(s):
+    """Invert the bits of s"""
+    for i in range(len(s)):
+        s[i] = not s[i]
+
+def left_shift(s):
+    for i in range(len(s) - 1, 0, -1):
+        s[i] = s[i-1]
+    s[0] = False
+
+def int_convert(l):
+    """Converts a bit list into an integer"""
+    return sum([int(l[i]) * (2 ** i) for i in range(len(l))])
+
+### --- END --- ###
+
 class NoPathError(Exception):
     pass
 
@@ -96,7 +143,7 @@ def A(start, goal):
     fScore[start] = heuristic_cost_estimate(start, goal)
 
     while openSet:
-        current = min(openSet, lambda x : fScore[x]) # the node in openSet with the lowest fScore value
+        current = min(openSet, key = lambda x : fScore[x]) # the node in openSet with the lowest fScore value
         if current == goal:
             return reconstruct_path(cameFrom, current)
 
@@ -119,9 +166,52 @@ def A(start, goal):
     
     raise NoPathError
 
+def encoded_polyline_algorithm_format(locations):
+    """Takes in location objects and returns an encoded string for the polyline algorithm 
+    >>> l1 = Location(38.5, -120.2)
+    >>> l2 = Location(40.7, -120.95)
+    >>> l3 = Location(43.252, -126.453)
+    >>> encoded_polyline_algorithm_format([l1, l2, l3])
+    '_p~iF~ps|U_ulLnnqC_mqNvxq`@'
+    """
+    # First, take the differences between consecutive locations
+    for i in range(len(locations) - 1, 0, -1):
+        locations[i] = (locations[i][0] - locations[i-1][0], locations[i][1] - locations[i-1][1])
+    # Multiply everything by 10^5
+    ret = []
+    for i in range(len(locations)):
+        locations[i] = (round(1e5 * locations[i][0]), round(locations[i][1] * 1e5))
+        is_neg0 = locations[i][0] < 0
+        is_neg1 = locations[i][1] < 0
+        # Each of these will be bit arrays 
+        lat, long = binary(locations[i][0]), binary(locations[i][1])
+        left_shift(lat)
+        left_shift(long)
+        if is_neg0:
+            invert(lat)
+        if is_neg1:
+            invert(long)
+        lat_chunk = [lat[5 * i : 5 * i + 5] for i in range(6)]
+        long_chunk = [lat[5 * i : 5 * i + 5] for i in range(6)]
+        for elem in lat_chunk:
+            elem.append(True)
+        for elem in long_chunk:
+            elem.append(True)
+        lat_chunk[-1][-1] = False
+        long_chunk[-1][-1] = False
+        for i in range(len(lat_chunk)):
+            lat_chunk[i] = chr(int_convert(lat_chunk[i]) + 63)
+            long_chunk[i] = chr(int_convert(long_chunk[i]) + 63)
+        ret.append(sum(lat_chunk, ""))
+        ret.append(sum(long_chunk, ""))
+    return ret
+        
 def reconstruct_path(cameFrom, current):
     total_path = [current]
-    while current in cameFrom.Keys:
+    while current in cameFrom.keys():
         current = cameFrom[current]
         total_path.append(current)
-    return total_path
+    total_path.reverse()
+    for i in range(len(total_path)):
+        total_path[i] = (total_path[i].lat, total_path[i].long)
+    return encoded_polyline_algorithm_format(total_path)
