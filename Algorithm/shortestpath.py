@@ -82,7 +82,7 @@ class Location:
         r -- the radius constant
         d -- the distance away from the event 
         """
-        midpoint = Location( (self.lat + other.lat) / 2, (self.long + other.long) / 2)
+        midpoint = Location((self.lat + other.lat) / 2, (self.long + other.long) / 2)
         # We now compute the distance from midpoint to the location of the risk. 
         ret_value = 0
         for event in risks.events:
