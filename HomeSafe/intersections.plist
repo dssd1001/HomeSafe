@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>lat</key>
+		<real>37.868290</real>
+		<key>long</key>
+		<real>-122.254346</real>
+		<key>no</key>
+		<integer>1</integer>
+		<key>title</key>
+		<string>yo</string>
+	</dict>
+	<dict>
+		<key>lat</key>
+		<real>37.869245</real>
+		<key>long</key>
+		<real>-122.254525</real>
+		<key>no</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>yo</string>
+	</dict>
+	<dict>
+		<key>lat</key>
+		<real>37.869514</real>
+		<key>long</key>
+		<real>-122.252385</real>
+		<key>no</key>
+		<integer>3</integer>
+		<key>title</key>
+		<string>yo</string>
+	</dict>
+	<dict>
+		<key>lat</key>
+		<real>37.868728</real>
+		<key>long</key>
+		<real>-122.252365</real>
+		<key>no</key>
+		<integer>4</integer>
+		<key>title</key>
+		<string>yo</string>
+	</dict>
+	<dict>
+		<key>lat</key>
+		<real>37.867893</real>
+		<key>long</key>
+		<real>-122.252182</real>
+		<key>no</key>
+		<integer>5</integer>
+		<key>title</key>
+		<string>yo</string>
+	</dict>
+	<dict>
+		<key>lat</key>
+		<real>37.866873</real>
+		<key>long</key>
+		<real>-122.251938</real>
+		<key>no</key>
+		<integer>6</integer>
+		<key>title</key>
+		<string>yo</string>
+	</dict>
+</array>
+</plist>

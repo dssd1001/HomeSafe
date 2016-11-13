@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapController: UIViewController, CLLocationManagerDelegate {
+class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     /*
      Add UITextField for Current/Destination locations.
@@ -26,11 +26,12 @@ class MapController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         map.mapType = MKMapType.standard
         map.isZoomEnabled = true
         map.isScrollEnabled = true
         view.addSubview(map)
+        map.delegate = self
         
         lM.requestWhenInUseAuthorization()
         
@@ -51,7 +52,79 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         
         map.showsUserLocation = true
         
+        // Populate with data
+        
+        getIncidents()
+        
+        let routeAnnotations = getMapAnnotations(filename: "intersections")
+        
+        var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+        for annotation in routeAnnotations {
+            points.append(annotation.coordinate)
+        }
+        let polyline = MKPolyline(coordinates: points, count: points.count)
+        map.add(polyline)
+        
     }
+    
+    //
+    // Populate
+    //
+    
+    func getIncidents() {
+        let incidentAnnotations = getMapAnnotations(filename: "incidents")
+        map.addAnnotations(incidentAnnotations)
+        
+        for incident in incidentAnnotations {
+            let cir:MKCircle = MKCircle(center: incident.coordinate, radius: (incident.radius!)*1000)
+            map.add(cir)
+        }
+    }
+    
+    func getMapAnnotations(filename:String) -> [Location] {
+        var annotations:Array = [Location]()
+        
+        var locations: NSArray?
+        if let path = Bundle.main.path(forResource: filename, ofType: "plist") {
+            locations = NSArray(contentsOfFile: path)
+        }
+        
+        if let items = locations {
+            for item in items {
+                let lat = (item as AnyObject).value(forKey: "lat") as! Double
+                let long = (item as AnyObject).value(forKey: "long")as! Double
+                let annotation = Location(latitude: lat, longitude: long)
+                annotation.title = (item as AnyObject).value(forKey: "title") as? String
+                annotation.radius = (item as AnyObject).value(forKey: "radius") as? Double
+                annotations.append(annotation)
+            }
+        }
+        return annotations
+    }
+    
+    //
+    // MKMapView
+    //
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            
+            polylineRenderer.strokeColor = UIColor.gray
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        }
+        
+        let overlayRenderer : MKCircleRenderer = MKCircleRenderer(overlay: overlay);
+        overlayRenderer.lineWidth = 1.0
+        overlayRenderer.fillColor = UIColor.red.withAlphaComponent(0.1)
+        return overlayRenderer
+    }
+    
+    //
+    // CLLocationManager
+    //
     
     let regionRadius: CLLocationDistance = 500
     
@@ -65,32 +138,6 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         userLocation = locValue
         
         centerMapOnLocation(location: CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude))
-        
-        let annotation = ColorPointAnnotation(pinColor: UIColor.blue)
-        annotation.coordinate = userLocation
-        map.addAnnotation(annotation)
-        
-//        map.showAnnotations(map.annotations, animated: true)
-    }
-    
-    func mapView(_ mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            
-            let colorPointAnnotation = annotation as! ColorPointAnnotation
-            pinView?.pinTintColor = colorPointAnnotation.pinColor
-        }
-        else {
-            pinView?.annotation = annotation
-        }
-        
-        return pinView
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -100,6 +147,5 @@ class MapController: UIViewController, CLLocationManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
 }
