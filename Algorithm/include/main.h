@@ -20,7 +20,7 @@ public:
         }
     }
 
-    std::vector<Location*> Astar(Location* start, Location* goal)
+    std::vector<std::pair<double, double> > Astar(Location* start, Location* goal)
     {
         std::set<Location*> closedSet;
         std::set<Location*> openSet;
@@ -118,7 +118,7 @@ public:
 private:
     std::vector<Location*> intersections;
     Risks current_risks;
-    std::vector<Location*> reconstruct_path(const std::map<Location*, Location*>& cameFrom, Location* current)
+    std::vector<std::pair<double, double> > reconstruct_path(std::map<Location*, Location*>& cameFrom, Location* current)
     {
         std::vector<Location*> total_path(1, current);
         while (cameFrom.count(current))
@@ -130,7 +130,7 @@ private:
         std::vector< std::pair<double, double> > ret(total_path.size());
         for (int i = 0; i < total_path.size(); i++)
         {
-            ret[i] = std::make_pair(total_path[i]->get_latitude(), total_path[i]->longitude());
+            ret[i] = std::make_pair(total_path[i]->get_latitude(), total_path[i]->get_longitude());
         }
         return ret;
     }
