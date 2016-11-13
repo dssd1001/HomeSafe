@@ -30,10 +30,10 @@
 		57226DB81DD8ACD900D9FE6E /* Feed.png in Resources */ = {isa = PBXBuildFile; fileRef = 57226DB51DD8ACD900D9FE6E /* Feed.png */; };
 		57226DB91DD8ACD900D9FE6E /* Map.png in Resources */ = {isa = PBXBuildFile; fileRef = 57226DB61DD8ACD900D9FE6E /* Map.png */; };
 		57226DC01DD8AFED00D9FE6E /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 57226DBF1DD8AFED00D9FE6E /* Settings.png */; };
-		57226DC41DD8B37500D9FE6E /* ObjcClass.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57226DC31DD8B37500D9FE6E /* ObjcClass.mm */; };
 		57226DC91DD8B43C00D9FE6E /* inputdata.txt in Resources */ = {isa = PBXBuildFile; fileRef = 57226DC51DD8B43C00D9FE6E /* inputdata.txt */; };
 		57DC35C81DD8171900F974DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DC35C71DD8171900F974DA /* UIKit.framework */; };
 		57DC35CA1DD8172500F974DA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DC35C91DD8172500F974DA /* CoreLocation.framework */; };
+		5854F7461DD8E35E0049F78E /* ObjcBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5854F7451DD8E35E0049F78E /* ObjcBridge.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,13 +83,14 @@
 		57226DB51DD8ACD900D9FE6E /* Feed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feed.png; sourceTree = "<group>"; };
 		57226DB61DD8ACD900D9FE6E /* Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Map.png; sourceTree = "<group>"; };
 		57226DBF1DD8AFED00D9FE6E /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
-		57226DC31DD8B37500D9FE6E /* ObjcClass.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjcClass.mm; sourceTree = "<group>"; };
 		57226DC51DD8B43C00D9FE6E /* inputdata.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inputdata.txt; sourceTree = "<group>"; };
 		57226DC61DD8B43C00D9FE6E /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		57226DC71DD8B43C00D9FE6E /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		57226DC81DD8B43C00D9FE6E /* Risks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Risks.h; sourceTree = "<group>"; };
 		57DC35C71DD8171900F974DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57DC35C91DD8172500F974DA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5854F7421DD8D8740049F78E /* HomeSafe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HomeSafe-Bridging-Header.h"; sourceTree = "<group>"; };
+		5854F7451DD8E35E0049F78E /* ObjcBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjcBridge.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +160,7 @@
 				57226DA81DD8805400D9FE6E /* MapController.swift */,
 				4127B6191DD73D7300B9C643 /* InfoController.swift */,
 				4127B62E1DD8872800B9C643 /* CustomMapController.swift */,
+				5854F7451DD8E35E0049F78E /* ObjcBridge.mm */,
 				4127B61D1DD7408F00B9C643 /* AlertController.swift */,
 				4127B61B1DD73D8800B9C643 /* SettingsController.swift */,
 				4127B62C1DD8405B00B9C643 /* StaticSettingsController.swift */,
@@ -166,7 +168,7 @@
 				4127B5EE1DD7391900B9C643 /* Assets.xcassets */,
 				4127B5F31DD7391900B9C643 /* Info.plist */,
 				4127B5EB1DD7391900B9C643 /* HomeSafe.xcdatamodeld */,
-				57226DC31DD8B37500D9FE6E /* ObjcClass.mm */,
+				5854F7421DD8D8740049F78E /* HomeSafe-Bridging-Header.h */,
 			);
 			path = HomeSafe;
 			sourceTree = "<group>";
@@ -278,6 +280,7 @@
 					4127B5E01DD7391900B9C643 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 5NAJLS92PN;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5854F7461DD8E35E0049F78E /* ObjcBridge.mm in Sources */,
 				4127B62D1DD8405B00B9C643 /* StaticSettingsController.swift in Sources */,
 				4127B5E71DD7391900B9C643 /* MainController.swift in Sources */,
 				57226DA71DD87FFF00D9FE6E /* Location.swift in Sources */,
@@ -364,7 +368,6 @@
 				4127B61C1DD73D8800B9C643 /* SettingsController.swift in Sources */,
 				4127B5ED1DD7391900B9C643 /* HomeSafe.xcdatamodeld in Sources */,
 				4127B61A1DD73D7300B9C643 /* InfoController.swift in Sources */,
-				57226DC41DD8B37500D9FE6E /* ObjcClass.mm in Sources */,
 				4127B61E1DD7408F00B9C643 /* AlertController.swift in Sources */,
 				57226DA91DD8805400D9FE6E /* MapController.swift in Sources */,
 				4127B5E51DD7391900B9C643 /* AppDelegate.swift in Sources */,
@@ -519,6 +522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5NAJLS92PN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,6 +532,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CalHacks.Home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HomeSafe/HomeSafe-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -536,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5NAJLS92PN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -545,6 +552,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CalHacks.Home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HomeSafe/HomeSafe-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
