@@ -2,3 +2,4 @@
 main.cpp
 *.o
 *.exe
+*.depend
