@@ -118,8 +118,7 @@ public:
     }
     void push_event(double latitude, double longitude, double danger, double radius)
     {
-        Location* l = new Location(latitude, longitude);
-        current_risks.push_event(l, danger, radius);
+        current_risks.push_event(latitude, longitude, danger, radius);
     }
 
 private:
@@ -147,7 +146,7 @@ private:
         double ret_value = 0;
         for (auto event : risks.events())
         {
-            double d = midpoint.distance(*(event.location));
+            double d = midpoint.distance(Location(event.latitude, event.longitude));
             double r = event.radius;
             double danger = event.danger;
             ret_value += danger * (r / d) * (r / d);

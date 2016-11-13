@@ -3,3 +3,4 @@ main.cpp
 *.o
 *.exe
 *.depend
+*.layout

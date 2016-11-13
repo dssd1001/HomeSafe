@@ -29,7 +29,7 @@ int main()
     }
     fin.close();
     vector<Location*> i = berkeley.get_intersections();
-
+    berkeley.push_event(37.876978, -122.260241, 10, 0.5);
     cout.precision(10);
     cout << *(i[0]) << endl;
     cout << *(i[12]) << endl;

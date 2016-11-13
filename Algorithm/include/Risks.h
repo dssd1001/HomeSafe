@@ -7,19 +7,16 @@ class Location;
 class Event
 {
 public:
-    Event (Location * loc, double dang, double rad) :
-        location(loc),
+    Event (double lat, double lon, double dang, double rad) :
+        latitude(lat),
+        longitude(lon),
         danger(dang),
         radius(rad)
     {
 
     }
-    virtual ~Event()
-    {
-        delete location;
-        location = nullptr;
-    }
-    Location * location;
+    double latitude;
+    double longitude;
     double danger;
     double radius;
 };
@@ -34,9 +31,9 @@ public:
     virtual ~Risks()
     {
     }
-    void push_event(Location * loc, double danger, double radius)
+    void push_event(double lat, double lon, double danger, double radius)
     {
-        mevents.push_back(Event(loc, danger, radius));
+        mevents.push_back(Event(lat, lon, danger, radius));
     }
     std::vector<Event> events() const
     {
