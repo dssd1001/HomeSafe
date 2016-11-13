@@ -2,6 +2,8 @@
 #define RISKS_H_INCLUDED
 #include <vector>
 #include "Location.h"
+class Location;
+
 class Event
 {
 public:

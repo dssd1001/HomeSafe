@@ -4,12 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
-
-std::ostream& operator<< (std::ostream& out, const Location& l)
-{
-    out << '(' << l.get_latitude() << ', ' << l.get_longitude() << ')';
-    return out;
-}
+#include "Risks.h"
 
 class Location
 {
@@ -47,10 +42,12 @@ class Location
             double lat1 = latitude * (3.141592653) / 180;
             double lon2 = other.longitude * (3.141592653) / 180;
             double lat2 = other.latitude * (3.141592653) / 180;
-            double a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
-            double c = 2 * asin(sqrt(a))
-            double r = 6371 # Radius of earth in kilometers.
-            return r * c
+            double dlat = lat2 - lat1;
+            double dlon = lon2 - lon1;
+            double a = sin(dlat / 2) * sin(dlat / 2) + cos(lat1) * cos(lat2) * sin(dlon / 2) * sin(dlon / 2);
+            double c = 2 * asin(sqrt(a));
+            double r = 6371; // Radius of earth in kilometers.
+            return r * c;
         }
 
         std::vector<Location*> get_connections()
@@ -81,5 +78,10 @@ class Location
         std::vector<Location*> connections;
 
 };
+std::ostream& operator<< (std::ostream& out, const Location& l)
+{
+    out << '(' << l.get_latitude() << ', ' << l.get_longitude() << ')';
+    return out;
+}
 
 #endif // LOCATION_H
