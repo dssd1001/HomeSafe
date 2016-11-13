@@ -22,6 +22,7 @@
 		4127B6211DD7800300B9C643 /* muse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4127B6201DD7800300B9C643 /* muse.jpg */; };
 		4127B6241DD78E7700B9C643 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4127B6231DD78E7700B9C643 /* MapKit.framework */; };
 		4127B62D1DD8405B00B9C643 /* StaticSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B62C1DD8405B00B9C643 /* StaticSettingsController.swift */; };
+		4127B62F1DD8872800B9C643 /* CustomMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4127B62E1DD8872800B9C643 /* CustomMapController.swift */; };
 		57226DA51DD87FFF00D9FE6E /* incidents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57226DA21DD87FFF00D9FE6E /* incidents.plist */; };
 		57226DA61DD87FFF00D9FE6E /* intersections.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57226DA31DD87FFF00D9FE6E /* intersections.plist */; };
 		57226DA71DD87FFF00D9FE6E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57226DA41DD87FFF00D9FE6E /* Location.swift */; };
@@ -69,6 +70,7 @@
 		4127B6201DD7800300B9C643 /* muse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = muse.jpg; sourceTree = "<group>"; };
 		4127B6231DD78E7700B9C643 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4127B62C1DD8405B00B9C643 /* StaticSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticSettingsController.swift; sourceTree = "<group>"; };
+		4127B62E1DD8872800B9C643 /* CustomMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMapController.swift; sourceTree = "<group>"; };
 		57226DA21DD87FFF00D9FE6E /* incidents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = incidents.plist; sourceTree = "<group>"; };
 		57226DA31DD87FFF00D9FE6E /* intersections.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intersections.plist; sourceTree = "<group>"; };
 		57226DA41DD87FFF00D9FE6E /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				4127B5E61DD7391900B9C643 /* MainController.swift */,
 				57226DA81DD8805400D9FE6E /* MapController.swift */,
 				4127B6191DD73D7300B9C643 /* InfoController.swift */,
+				4127B62E1DD8872800B9C643 /* CustomMapController.swift */,
 				4127B61D1DD7408F00B9C643 /* AlertController.swift */,
 				4127B61B1DD73D8800B9C643 /* SettingsController.swift */,
 				4127B62C1DD8405B00B9C643 /* StaticSettingsController.swift */,
@@ -331,6 +334,7 @@
 				4127B62D1DD8405B00B9C643 /* StaticSettingsController.swift in Sources */,
 				4127B5E71DD7391900B9C643 /* MainController.swift in Sources */,
 				57226DA71DD87FFF00D9FE6E /* Location.swift in Sources */,
+				4127B62F1DD8872800B9C643 /* CustomMapController.swift in Sources */,
 				4127B6161DD73BF400B9C643 /* Support.swift in Sources */,
 				4127B61C1DD73D8800B9C643 /* SettingsController.swift in Sources */,
 				4127B5ED1DD7391900B9C643 /* HomeSafe.xcdatamodeld in Sources */,
