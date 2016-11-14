@@ -2,5 +2,5 @@ Designed for the everyday person, HomeSafe aims to provide a safer world and all
 
 Created by Aaron Lee, David Lee, Jonathan Xia, Nat, Walt Leung
 
-![app screenshots](Resources/screenshot1.png)
-![app screenshots](Resources/screenshot2.png)
+![app screenshots](HomeSafe/Resources/screenshot1.png)
+![app screenshots](HomeSafe/Resources/screenshot2.png)
