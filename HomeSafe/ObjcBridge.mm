@@ -35,7 +35,7 @@
 {
     self.internal->push_event(*latitude, *longitude, *danger, *radius);
 }
-- (NSMutableArray*) Astar (double*)start_lat : (double*)start_lon : (double*)goal_lat : (double*)goal_lon
+- (NSMutableArray*) Astar:(double*)start_lat : (double*)start_lon : (double*)goal_lat : (double*)goal_lon
 {
     const NSMutableArray* array = self.internal->Astar(*start_lat, *start_lon, *goal_lat, *goal_lon);
     return array ? @(array) : nil;

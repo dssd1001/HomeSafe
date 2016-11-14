@@ -7,6 +7,7 @@
 #include "Risks.h"
 #include <set>
 #include <map>
+#include <fstream>
 
 class City
 {
@@ -22,6 +23,7 @@ public:
 
     std::vector<std::pair<double, double> > Astar(double start_lat, double start_lon, double goal_lat, double goal_lon)
     {
+        std::vector<std::pair<double,double>> whatever;
         Location st(start_lat, start_lon);
         Location go(goal_lat, goal_lon); // The start and goal Location objects
         Location * start = *std::min_element(intersections.begin(), intersections.end(),
@@ -90,6 +92,7 @@ public:
                 fScore[neighbor] = gScore[neighbor] + neighbor->distance(*goal) * neighbor->distance_weight;
             }
         }
+        return whatever;
     }
 
     void push_street(std::vector< std::pair<double, double> > inters)
@@ -129,6 +132,29 @@ public:
         }
     }
 
+    void load_street()
+    {
+        std::ifstream fin;
+        fin.open("inputdata.txt");
+
+        for (int i = 0; i < 28; i++)
+        {
+            double x, y;
+            std::vector< std::pair<double, double> > inters;
+            while (true)
+            {
+                fin >> x;
+                if (x == 696969) {
+                    break;
+                }
+
+                fin >> y;
+                inters.push_back(std::make_pair(x, y));
+            }
+            this->push_street(inters);
+        }
+        fin.close();
+    }
     std::vector<Location*> get_intersections() const
     {
         return intersections;

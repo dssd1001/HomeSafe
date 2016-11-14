@@ -9,12 +9,12 @@
 import Foundation
 import RealmSwift
 
-var realm = Realm()
+var realm = try! Realm()
 
 
 
-class Location : Object {
-    var name: String
+class LocationRealm : Object {
+    var name: String = ""
     var heuristicVal: [String:Float] = [
         "Theft" : 1.0,
         "Burglary" : 2.0,
